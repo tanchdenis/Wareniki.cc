@@ -1,0 +1,182 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+--========== НАСТРОЙКИ ==========--
+local SETTINGS = {
+    Mesh = {
+        AssetId = 12189506499,
+        TextureId = 12189506784,
+        Size = Vector3.new(0.4, 0.4, 0.4),
+        Scale = Vector3.new(0.4, 0.4, 0.4),
+        Transparency = 0,
+        RotationCorrection = {
+            X = 13,
+            Y = math.pi,
+            Z = 0,
+            Offset = 2
+        },
+        FacePlayer = true
+    },
+    Orbit = {
+        Radius = 6,
+        BaseHeight = 0.4,
+        HeightVariation = 0.2,
+        Speed = 1.3,
+        HeightChangeSpeed = 2,
+        Clockwise = true
+    },
+    Effects = {
+        Particles = {
+            Enabled = true,
+            Texture = "rbxassetid://13512686408",
+            LightEmission = 1,
+            Size = NumberSequence.new(0.5, 1.5),
+            Speed = NumberRange.new(2, 5),
+            Lifetime = NumberRange.new(1, 3),
+            Rate = 50,
+            Rotation = NumberRange.new(0, 360),
+            VelocitySpread = 360
+        },
+        Light = {
+            Enabled = true,
+            Brightness = 1,
+            Range = 15,
+            Color = Color3.fromRGB(0, 170, 255)
+        }
+    }
+}
+--========== КОНЕЦ НАСТРОЕК ==========--
+
+local player = Players.LocalPlayer
+local meshPart = nil
+local heartbeatConnection = nil
+local humanoidRootPart = nil
+
+local function createEffects()
+    if SETTINGS.Effects.Particles.Enabled then
+        local emitter = Instance.new("ParticleEmitter", meshPart)
+        for k,v in pairs(SETTINGS.Effects.Particles) do
+            if k ~= "Enabled" then emitter[k] = v end
+        end
+    end
+
+    if SETTINGS.Effects.Light.Enabled then
+        local light = Instance.new("PointLight", meshPart)
+        for k,v in pairs(SETTINGS.Effects.Light) do
+            if k ~= "Enabled" then light[k] = v end
+        end
+    end
+end
+
+local function updatePosition(dt)
+    if not humanoidRootPart or not humanoidRootPart.Parent then return end
+
+    local direction = SETTINGS.Orbit.Clockwise and 1 or -1
+    SETTINGS.Orbit.Angle = (SETTINGS.Orbit.Angle or 0) + dt * SETTINGS.Orbit.Speed * direction
+    SETTINGS.Orbit.Angle = SETTINGS.Orbit.Angle % (2 * math.pi)
+
+    local heightVariation = math.sin(os.clock() * SETTINGS.Orbit.HeightChangeSpeed) * SETTINGS.Orbit.HeightVariation
+    local currentHeight = SETTINGS.Orbit.BaseHeight + heightVariation
+
+    local offset = Vector3.new(
+        math.cos(SETTINGS.Orbit.Angle) * SETTINGS.Orbit.Radius,
+        currentHeight,
+        math.sin(SETTINGS.Orbit.Angle) * SETTINGS.Orbit.Radius
+    )
+
+    local targetPosition = humanoidRootPart.Position + offset
+    meshPart.Position = targetPosition
+
+    if SETTINGS.Mesh.FacePlayer then
+        local lookCFrame = CFrame.new(targetPosition, humanoidRootPart.Position)
+        local correction = CFrame.Angles(
+            SETTINGS.Mesh.RotationCorrection.X,
+            SETTINGS.Mesh.RotationCorrection.Y + SETTINGS.Orbit.Angle * SETTINGS.Mesh.RotationCorrection.Offset,
+            SETTINGS.Mesh.RotationCorrection.Z
+        )
+        meshPart.CFrame = lookCFrame * correction
+    end
+end
+
+-- Главная функция запуска
+local function startOrbit()
+    if meshPart then meshPart:Destroy() end
+    if heartbeatConnection then heartbeatConnection:Disconnect() end
+
+    local character = player.Character or player.CharacterAdded:Wait()
+    humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    meshPart = Instance.new("Part")
+    meshPart.Name = "PlayerOrbiter"
+    meshPart.Size = SETTINGS.Mesh.Size
+    meshPart.Anchored = true
+    meshPart.CanCollide = false
+    meshPart.Transparency = SETTINGS.Mesh.Transparency
+    meshPart.CastShadow = false
+
+    local success, mesh = pcall(function()
+        local m = Instance.new("SpecialMesh", meshPart)
+        m.MeshId = "rbxassetid://"..SETTINGS.Mesh.AssetId
+        m.TextureId = "rbxassetid://"..SETTINGS.Mesh.TextureId
+        m.Scale = SETTINGS.Mesh.Scale
+        return m
+    end)
+
+    if not success then
+        warn("Ошибка загрузки меша: "..tostring(mesh))
+        mesh = Instance.new("SpecialMesh", meshPart)
+        mesh.MeshType = Enum.MeshType.Sphere
+    end
+
+    createEffects()
+    meshPart.Parent = workspace
+
+    heartbeatConnection = RunService.Heartbeat:Connect(updatePosition)
+end
+
+-- При первом запуске
+startOrbit()
+
+-- При каждом возрождении
+player.CharacterAdded:Connect(function()
+    task.wait(1) -- Подождать, чтобы персонаж полностью прогрузился
+    startOrbit()
+end)
+
+-- При удалении персонажа — отключаемся
+player.CharacterRemoving:Connect(function()
+    if heartbeatConnection then
+        heartbeatConnection:Disconnect()
+    end
+    if meshPart then
+        meshPart:Destroy()
+    end
+end)
+
+-- Глобальное управление
+_G.OrbitControl = {
+    UpdateSettings = function(newSettings)
+        for category, settings in pairs(newSettings) do
+            if SETTINGS[category] then
+                for key, value in pairs(settings) do
+                    SETTINGS[category][key] = value
+                end
+            end
+        end
+    end,
+
+    SetRotationCorrection = function(x, y, z)
+        SETTINGS.Mesh.RotationCorrection.X = x or 0
+        SETTINGS.Mesh.RotationCorrection.Y = y or 0
+        SETTINGS.Mesh.RotationCorrection.Z = z or 0
+    end,
+
+    ToggleOrbit = function(enable)
+        if enable == nil then enable = not heartbeatConnection.Connected end
+        if enable and not heartbeatConnection.Connected then
+            heartbeatConnection = RunService.Heartbeat:Connect(updatePosition)
+        elseif not enable and heartbeatConnection.Connected then
+            heartbeatConnection:Disconnect()
+        end
+    end
+}

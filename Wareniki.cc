@@ -5716,12 +5716,12 @@ AntiAimGroup:AddSlider("AntiAim_СFrame_Manipulation_Z_Angles", {Text = "Z Angle
 			    	    --💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩
 				    	    --💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩
 FakeLagsGroup:AddToggle("FakeLags_Enabled", {Text = "Enabled"})
-FakeLagsGroup:AddToggle("FakeLags_PreventReplication", {Text = "Prevent Replication"}):AddKeyPicker("PreventReplicaKeyBind", {Default = '...', SyncToggleState = false, Mode = "Toggle", Text = "💩Prevent Replication", NoUI = false})
+FakeLagsGroup:AddToggle("FakeLags_PreventReplication", {Text = "Prevent Replication"}):AddKeyPicker("PreventReplicaKeyBind", {Default = '...', SyncToggleState = false, Mode = "Toggle", Text = "Prevent Replication", NoUI = false})
 FakeLagsGroup:AddSlider("FakeLags_Ticks", {Text = "Ticks", Default = 0, Min = 0, Max = 2048, Rounding = 0, Compact = false})
 FakeLagsGroup:AddSlider("FakeLags_Limit", {Text = "Limit", Default = 0, Min = 0, Max = 256, Rounding = 0, Compact = false})
 ConnectKeyPickerToToggle("FakeLags_PreventReplication", "PreventReplicaKeyBind")
 
-AnotherGroup:AddToggle("KillAll_Enabled", {Text = "Kill All"}):AddKeyPicker("KillAllKeyBind", {Default = '...', SyncToggleState = false, Mode = "Toggle", Text = "💩Kill All", NoUI = false})
+AnotherGroup:AddToggle("KillAll_Enabled", {Text = "Kill All"}):AddKeyPicker("KillAllKeyBind", {Default = '...', SyncToggleState = false, Mode = "Toggle", Text = "Kill All", NoUI = false})
 ConnectKeyPickerToToggle("KillAll_Enabled", "KillAllKeyBind")
 AnotherGroup:AddSlider("KillAll_PingMultiPlayer", {Text = "Ping MultiPlayer", Default = 0, Min = -250, Max = 250, Rounding = 0, Compact = false})
 AnotherGroup:AddDivider()
@@ -5748,7 +5748,7 @@ ExploitsGroup:AddDropdown("Spawn_Weapons_Primary", {Text = "Select Primary Weapo
 ExploitsGroup:AddDropdown("Spawn_Weapons_Secondary", {Text = "Select Secondary Weapon", Values = allweapons, Default = "Downwards", AllowNull = false})
 ExploitsGroup:AddToggle("Anti_Camera_Resolver", {Text = "Anti Camera Resolver"})
 ExploitsGroup:AddToggle("Break_Aura", {Text = "Break Aura"})
-ExploitsGroup:AddToggle("Damage_Modifier", {Text = "💩Damage Modifier"})
+ExploitsGroup:AddToggle("Damage_Modifier", {Text = "Damage Modifier"})
 ExploitsGroup:AddSlider("Damage_ModifierValue", {Text = "Modifier", Default = 100, Min = 1, Max = 100, Rounding = 0, Compact = false})
 ExploitsGroup:AddToggle("Chat_Dead", {Text = "Show Dead Messages (chat)"})
 ExploitsGroup:AddToggle("Remove_Killers", {Text = "Remove Killers"})
@@ -5764,7 +5764,7 @@ MovementGroup:AddToggle("Movement_SpeedHack", {Text = "Speed Hack"})
 MovementGroup:AddToggle("Movement_AutoHop", {Text = "Auto Hop"})
 MovementGroup:AddDropdown("Movement_SpeedHackMethod", {Text = "Speed Hack Method", Values = {"Velocity", "CFrame"}, Default = "Downwards", AllowNull = false})
 MovementGroup:AddSlider("Movement_Speed", {Text = "Speed", Default = 25, Min = 0, Max = 150, Rounding = 0, Compact = false})
-MovementGroup:AddToggle("Movement_OverrideSpeedHack", {Text = "Override Speed"}):AddKeyPicker("OverrideSpeedHackKeyBind", {Default = '...', SyncToggleState = false, Mode = "Toggle", Text = "💩Override Speed", NoUI = false})
+MovementGroup:AddToggle("Movement_OverrideSpeedHack", {Text = "Override Speed"}):AddKeyPicker("OverrideSpeedHackKeyBind", {Default = '...', SyncToggleState = false, Mode = "Toggle", Text = "Override Speed", NoUI = false})
 MovementGroup:AddSlider("Movement_OverrideSpeed", {Text = "Override Speed", Default = 25, Min = 0, Max = 150, Rounding = 0, Compact = false})
 
     ConnectKeyPickerToToggle("Movement_OverrideSpeedHack", "OverrideSpeedHackKeyBind")
@@ -5859,7 +5859,7 @@ ArmsTab:AddDropdown('Arms_Changer_Texture', {Text = 'Arms Texture', Values = for
 EnemiesTab:AddToggle("Enemy_Boxes_Filled", {Text = "Boxes Filled", Default = false}):AddColorPicker("Enemy_Boxes_Filled_Color1", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0})
 EnemiesTab:AddSlider("Enemy_Boxes_Filled_Transperency", {Text = 'Transperency', Default = 5, Min = 1, Max = 10, Rounding = 0, Compact = false})
 
-EnemiesTab:AddToggle("Enemy_Health_Bar", {Text = "Health Bar", Default = false}):AddColorPicker("Enemy_Health_Bar_Color1", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0}):AddColorPicker("Enemy_Health_Bar_Color2", {Default = _Color3FromRGB(255,255,255), Title = '💩Color', Transparency = 0})
+EnemiesTab:AddToggle("Enemy_Health_Bar", {Text = "Health Bar", Default = false}):AddColorPicker("Enemy_Health_Bar_Color1", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0}):AddColorPicker("Enemy_Health_Bar_Color2", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0})
 EnemiesTab:AddToggle("Enemy_Health_Bar_Gradient", {Text = "Health Bar Gradient", Default = false})
 EnemiesTab:AddToggle("Enemy_Health_Number", {Text = "Health Number", Default = false})
 EnemiesTab:AddSlider("Enemy_Max_HP_Visibility_Cap", {Text = 'Max HP Visibility Cap', Default = 0, Min = 0, Max = 100, Rounding = 0, Compact = false})
@@ -5879,7 +5879,7 @@ EnemiesTab:AddToggle("Enemy_Cash", {Text = "Cash", Default = false}):AddColorPic
 EnemiesTab:AddToggle("Enemy_Snap_Lines", {Text = "Snap Lines", Default = false}):AddColorPicker("Enemy_Snap_Lines_Color1", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0})
 EnemiesTab:AddSlider("Enemy_Snap_Lines_Transperency", {Text = 'Snap Lines Transperency', Default = 5, Min = 1, Max = 10, Rounding = 0, Compact = false})
 
-EnemiesTab:AddToggle("Enemy_Chamses", {Text = "Chamses", Default = false}):AddColorPicker("Enemy_Chamses_Color1", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0}):AddColorPicker("Enemy_Chamses_Color2", {Default = _Color3FromRGB(255,255,255), Title = '💩Color', Transparency = 0})
+EnemiesTab:AddToggle("Enemy_Chamses", {Text = "Chamses", Default = false}):AddColorPicker("Enemy_Chamses_Color1", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0}):AddColorPicker("Enemy_Chamses_Color2", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0})
 EnemiesTab:AddSlider("Enemy_Chamses_Transperency1", {Text = 'Transperency', Default = 5, Min = 1, Max = 10, Rounding = 0, Compact = false})
 EnemiesTab:AddSlider("Enemy_Chamses_Transperency2", {Text = 'Transperency', Default = 5, Min = 1, Max = 10, Rounding = 0, Compact = false})
 
@@ -5895,7 +5895,7 @@ TeamTab:AddToggle("Team_Boxes", {Text = "Boxes", Default = false}):AddColorPicke
 TeamTab:AddToggle("Team_Boxes_Filled", {Text = "Boxes Filled", Default = false}):AddColorPicker("Team_Boxes_Filled_Color1", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0})
 TeamTab:AddSlider("Team_Boxes_Filled_Transperency", {Text = 'Transperency', Default = 5, Min = 1, Max = 10, Rounding = 0, Compact = false})
 
-TeamTab:AddToggle("Team_Health_Bar", {Text = "Health Bar", Default = false}):AddColorPicker("Team_Health_Bar_Color1", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0}):AddColorPicker("Team_Health_Bar_Color2", {Default = _Color3FromRGB(255,255,255), Title = '💩Color', Transparency = 0})
+TeamTab:AddToggle("Team_Health_Bar", {Text = "Health Bar", Default = false}):AddColorPicker("Team_Health_Bar_Color1", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0}):AddColorPicker("Team_Health_Bar_Color2", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0})
 TeamTab:AddToggle("Team_Health_Bar_Gradient", {Text = "Health Bar Gradient", Default = false})
 TeamTab:AddToggle("Team_Health_Number", {Text = "Health Number", Default = false})
 TeamTab:AddSlider("Team_Max_HP_Visibility_Cap", {Text = 'Max HP Visibility Cap', Default = 0, Min = 0, Max = 100, Rounding = 0, Compact = false})
@@ -5915,11 +5915,11 @@ TeamTab:AddToggle("Team_Cash", {Text = "Cash", Default = false}):AddColorPicker(
 TeamTab:AddToggle("Team_Snap_Lines", {Text = "Snap Lines", Default = false}):AddColorPicker("Team_Snap_Lines_Color1", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0})
 TeamTab:AddSlider("Team_Snap_Lines_Transperency", {Text = 'Snap Lines Transperency', Default = 5, Min = 1, Max = 10, Rounding = 0, Compact = false})
 
-TeamTab:AddToggle("Team_Chamses", {Text = "Chamses", Default = false}):AddColorPicker("Team_Chamses_Color1", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0}):AddColorPicker("Team_Chamses_Color2", {Default = _Color3FromRGB(255,255,255), Title = '💩Color', Transparency = 0})
+TeamTab:AddToggle("Team_Chamses", {Text = "Chamses", Default = false}):AddColorPicker("Team_Chamses_Color1", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0}):AddColorPicker("Team_Chamses_Color2", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0})
 TeamTab:AddSlider("Team_Chamses_Transperency1", {Text = 'Transperency', Default = 5, Min = 1, Max = 10, Rounding = 0, Compact = false})
 TeamTab:AddSlider("Team_Chamses_Transperency2", {Text = 'Transperency', Default = 5, Min = 1, Max = 10, Rounding = 0, Compact = false})
 
-TeamTab:AddToggle("Team_Skeletons", {Text = "Skeletons", Default = false}):AddColorPicker("Team_Skeletons_Color1", {Default = _Color3FromRGB(255,255,255), Title = '💩Color', Transparency = 0})
+TeamTab:AddToggle("Team_Skeletons", {Text = "Skeletons", Default = false}):AddColorPicker("Team_Skeletons_Color1", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0})
 
 EspSettingsTab:AddSlider("Esp_Settings_TextSize", {Text = 'Text Size', Default = 13, Min = 8, Max = 24, Rounding = 0, Compact = false})
 EspSettingsTab:AddDropdown("Esp_Settings_TextCase", {Text = "Text Case", Values = {"Normal", "UPPERCASE", "lowercase"}, Default = 1, Multi = false})
@@ -5995,7 +5995,7 @@ LightTab:AddSlider("Custom_BloomIntensity", {Text = 'Intensity', Default = 0, Mi
 LightTab:AddSlider("Custom_BloomSize", {Text = 'Size', Default = 0, Min = 0, Max = 100, Rounding = 0, Compact = false})
 LightTab:AddSlider("Custom_BloomThreshold", {Text = 'Threshold', Default = 0, Min = 0, Max = 100, Rounding = 0, Compact = false})
 
-LightTab:AddToggle("Custom_Atmosphere", {Text = "Custom Atmosphere", Default = false}):AddColorPicker("Atmosphere_Color1", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0}):AddColorPicker("Atmosphere_Color2", {Default = _Color3FromRGB(255,255,255), Title = '💩Color', Transparency = 0})
+LightTab:AddToggle("Custom_Atmosphere", {Text = "Custom Atmosphere", Default = false}):AddColorPicker("Atmosphere_Color1", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0}):AddColorPicker("Atmosphere_Color2", {Default = _Color3FromRGB(255,255,255), Title = 'Color', Transparency = 0})
 LightTab:AddSlider("Custom_AtmosphereDensity", {Text = 'Density', Default = 0, Min = 0, Max = 100, Rounding = 0, Compact = false})
 LightTab:AddSlider("Custom_AtmosphereGlare", {Text = 'Glare', Default = 0, Min = 0, Max = 100, Rounding = 0, Compact = false})
 LightTab:AddSlider("Custom_AtmosphereHaze", {Text = 'Haze', Default = 0, Min = 0, Max = 100, Rounding = 0, Compact = false})

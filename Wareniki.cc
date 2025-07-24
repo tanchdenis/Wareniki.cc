@@ -11113,7 +11113,7 @@ do  -- Signals !
             local Date = dayOfWeek..", "..month.." "..day
             local versionColor = "#".._StringUpper(_tostring(_ToHex(Library.AccentColor)))
             local version = '<font color="'..versionColor..'" size="9">v'..version..'</font>'
-            local str = '<font color="'..hex..'">shitasscheat</font> '..version..'   '..fps..' fps 〡 '..ping2..' ms 〡 '..Time..' 〡 '..Date..' 〡 '..Build..' 〡 UID: '.. ''
+            local str = '<font color="'..hex..'">Wareniki</font> '..version..'   '..fps..' fps 〡 '..ping2..' ms 〡 '..Time..' 〡 '..Date..' 〡 '..Build..' 〡 UID: '.. ''
             Library:SetWatermark(str)
         end
     end)
